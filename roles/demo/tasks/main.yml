@@ -1,3 +1,0 @@
-- name: print World
-    ansible.builtin.debug:
-      msg: "{{MSG}}"

@@ -14,15 +14,3 @@
     - name: print Bye
       ansible.builtin.debug:
         msg: Bye
-
-
-#- name: Sample Play3
-#  hosts: all
-#  roles:
-#    - name: demo
-#       vars:
-#          MSG: Hello
-#
-#    - name: demo
-#        vars:
-#          MSG: world
