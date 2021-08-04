@@ -32,3 +32,13 @@
       ansible.builtin.debug:
         msg: "Hostname = {{ansible_fqdn}}"
 ## fqdn:fully qualified domain name
+- name: Demo on runtime(registered) variables
+  hosts: all
+  tasks:
+    - name: Run uptime command
+      ansible.builtin.shell: uptime
+      register: out
+
+    - name: print output
+      ansible.builtin.debug:
+      msg: "{{out}}"
