@@ -3,6 +3,6 @@
   vars:
     URL: google.com
   tasks:
-    -name: print a variable
+    - name: print a variable
       debug:
-         msg: "URL = {{URL}}"
+        msg: "URL = {{URL}}"
