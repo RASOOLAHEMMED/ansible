@@ -1,8 +1,13 @@
 - name: Demo on variables
   hosts: all
   vars:
-    URL: google.com
+    URL: play.google.com
   tasks:
-    - name: print a variable
+    - name: print a play variable
       debug:
         msg: "URL = {{URL}}"
+    - name: print a task variable
+      debug:
+        msg: "URL = {{URL}}"
+      vars:
+        URL: task.googgle.com
