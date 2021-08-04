@@ -4,7 +4,7 @@
     URL: google.com
   tasks:
     -name: print a variable
-      debug:
+      ansible.builtin.debug:
          msg: "URL = {{URL}}"
 
 ### when there is a variable reference (calling variable), double quote it
