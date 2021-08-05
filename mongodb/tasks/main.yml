@@ -1,7 +1,7 @@
 - name: Create a Mongodb repo
   copy:
     src: mongo.repo
-    dest: /etc/yum.repos.d/mongodb.repo
+    dest: /etc/yum.repos.d/mongo.repo
 
 - name: Install mongoDB
   yum:
