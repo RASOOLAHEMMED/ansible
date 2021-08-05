@@ -22,7 +22,9 @@ locals {
   LENGTH                        = length(var.COMPONENTS)
 }
 
-resource "local_file" "foo" {
-  content                       = "[FRONTEND]\n${aws_instance.sample.*.private_ip[9]}"
+//COMPONENTS = ["mysql", "mongodb", "rabbitmq", "redis", "cart", "catalogue", "user", "shipping", "payment", "frontend"]
+
+resource "local_file" "Inventory-file" {
+  content                       = "[FRONTEND]\n${aws_instance.sample.*.private_ip[9]}\n[PAYMENT]\n${aws_instance.sample.*.private_ip[8]}\n[SHIPPING]\n${aws_instance.sample.*.private_ip[7]}\n[USER]\n${aws_instance.sample.*.private_ip[6]}\n[CATALOGUE]\n${aws_instance.sample.*.private_ip[5]}\n[CART]\n${aws_instance.sample.*.private_ip[4]}\n[REDIS]\n${aws_instance.sample.*.private_ip[3]}\n[RABBITMQ]\n${aws_instance.sample.*.private_ip[2]}\n[MONGODB]\n${aws_instance.sample.*.private_ip[1]}\n[MYSQL]\n${aws_instance.sample.*.private_ip[0]}\n"
   filename                      = "/tmp/inv-roboshop"
 }
