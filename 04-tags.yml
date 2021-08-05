@@ -1,10 +1,10 @@
 - name: Demo on Tags
   hosts: localhost
   tasks:
-    - name: ubuntu task
-      asnsible.builtin.debug:
-        msg: ubuntu task
+      - name: ubuntu task
+        asnsible.builtin.debug:
+          msg: ubuntu task
 
-    - name: ubuntu task
-      asnsible.builtin.debug:
+      - name: ubuntu task
+        asnsible.builtin.debug:
           msg: ubuntu task
