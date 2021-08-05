@@ -1,0 +1,36 @@
+- name: Create a Mongodb repo
+  copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install mongoDB
+    yum:
+      name: mongodb-org
+      state: present
+
+- name: Update mongoDB listen address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: start mongoDB service
+    systemd:
+      name: mongod
+      state: started
+
+- name: Download and extract mongoDB schema
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Load schema-Catalogue
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/catalogue.js"
+    idempotent: yes
+
+- name: Load schema-user
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/user.js"
+    idempotent: yes
