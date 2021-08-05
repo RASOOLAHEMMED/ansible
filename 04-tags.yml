@@ -6,5 +6,5 @@
         msg: ubuntu task
 
     - name: ubuntu task
-        asnsible.builtin.debug:
+      asnsible.builtin.debug:
           msg: ubuntu task
