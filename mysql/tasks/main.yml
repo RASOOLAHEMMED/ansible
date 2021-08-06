@@ -19,7 +19,7 @@
   register: default_mysql_check
   ignore_errors: yes
 
-- name: print
+- name: pringt
   debug:
     msg:"{{default_mysql_check}}"
 
