@@ -34,3 +34,8 @@
       when: not ACTION
       debug:
         msg: Hello false
+
+    - name: Run if variable B is decalred
+      when: B is declared
+      debug:
+        msg: Hello
