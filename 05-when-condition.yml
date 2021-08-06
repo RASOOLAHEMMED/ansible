@@ -1,7 +1,7 @@
 - name: Demo on when conditions
   hosts: localhost
   vars:
-    URL: google.com
+    URL: google.org
   tasks:
     - name: Conditon on strings
       when: URL == "google.com"
