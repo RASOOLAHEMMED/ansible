@@ -39,3 +39,8 @@
       when: B is defined
       debug:
         msg: Hello
+
+    - name: Run if variable B is not defined and a is less than 10
+      when: B is not defined and a is <=10
+      debug:
+        msg: Hello A
