@@ -1,5 +1,5 @@
 -name: setup MYSQL repo files
- copy:
+  copy:
    src: mysql.repo
    dest: /etc/yum.repos.d/mysql.repo
 
