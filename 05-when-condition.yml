@@ -9,6 +9,6 @@
         msg: Hello string
 
     - name: Conditon on strings
-          when: URL != "google.com"
-          debug:
-            msg: Hello string
+      when: URL != "google.com"
+      debug:
+        msg: Hello string
