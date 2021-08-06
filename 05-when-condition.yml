@@ -36,6 +36,6 @@
         msg: Hello false
 
     - name: Run if variable B is decalred
-      when: B is declared
+      when: B is defined
       debug:
         msg: Hello
