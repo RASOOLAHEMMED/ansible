@@ -1,7 +1,7 @@
 -name: setup MYSQL repo files
-  copy:
-    src: mysql.repo
-    dest: /etc/yum.repos.d/mysql.repo
+ copy:
+   src: mysql.repo
+   dest: /etc/yum.repos.d/mysql.repo
 
 - name: Insyall mysql server
   yum:
