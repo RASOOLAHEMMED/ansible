@@ -35,4 +35,3 @@
 - name: Reset MYSQL password
   shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';" | mysql --connect-expired-password -uroot -p{{out.stdout}}
 
-
