@@ -19,7 +19,7 @@
   register: default_mysql_check
 
 - name: Grab default password
-  shell: A temporary password' /var/log/mysqld.log | awk '{print $NF}'
+  shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
   register: out
 
 
