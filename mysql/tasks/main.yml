@@ -21,7 +21,7 @@
 
 - name: pringt
   debug:
-    msg:"{{default_mysql_check}}"
+    msg: "{{default_mysql_check}}"
 
 - name: Grab default password
   shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
