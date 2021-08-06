@@ -3,7 +3,7 @@
   vars:
     URL: google.com
   tasks:
-   - name: condition on strings
-     when: URL == "google.com"
-     ansible.builtin.debug:
-     msg: Hello string
+    - name: condition on strings
+      when: URL == "google.com"
+      ansible.builtin.debug:
+      msg: Hello string
