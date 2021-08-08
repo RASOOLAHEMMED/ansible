@@ -1,19 +1,18 @@
-- name: install Nodejs
+- name: Install NodeJS
   yum:
     name: [ "nodejs", "make", "gcc-c++" ]
     state: present
 
-- name: Download app code & app user
+- name: Download App Code & Add App User
   include_tasks:
     file: download.yml
 
-- name: Install {{COMPONENT}} dependencies
+- name: Install {{COMPONENT}} Dependencies
   community.general.npm:
     path: /home/roboshop/{{COMPONENT}}
     state: latest
   become_user: roboshop
 
-- name: setup Systemd
+- name: Setup SystemD
   include_tasks:
     file: setup-systemd.yml
-

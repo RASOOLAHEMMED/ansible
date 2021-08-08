@@ -3,16 +3,15 @@
     name: maven
     state: present
 
-- name: Download app code & app user
+- name: Download App Code & Add App User
   include_tasks:
     file: download.yml
 
 - name: Compile the packages
-  shell: mvn clean package && target/shipping-1.0.jar shipping.jar
+  shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
   args:
     chdir: /home/roboshop/{{COMPONENT}}
 
-- name: setup Systemd
+- name: Setup SystemD
   include_tasks:
     file: setup-systemd.yml
-

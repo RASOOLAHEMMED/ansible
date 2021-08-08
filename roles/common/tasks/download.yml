@@ -1,17 +1,18 @@
-- name: Add Roboshop Application User
+- name: Add RoboShop Application User
   ansible.builtin.user:
     name: roboshop
+  register: app_user
 
-- name: Download from github
+- name: Download from Github
   include_tasks:
     file: download-from-github.yml
 
-- name: Delete old app code
+- name: Delete Old App code
   file:
     path: /home/roboshop/{{COMPONENT}}
     state: absent
 
-- name: copy the extracted content
+- name: Copy the extracted content
   copy:
     src: /tmp/{{COMPONENT}}-main/
     dest: /home/roboshop/{{COMPONENT}}/
