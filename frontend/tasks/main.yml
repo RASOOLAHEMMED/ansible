@@ -18,10 +18,15 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
-- name: Copy roboshop configuration file
-  copy:
-      src: roboshop.conf
-      dest: /etc/nginx/default.d/roboshop.conf
+#- name: Copy roboshop configuration file
+#  copy:
+#      src: roboshop.conf
+#      dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Update roboshop configuration file
+  template:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
 
 - name: restart NGINX service
   systemd:
