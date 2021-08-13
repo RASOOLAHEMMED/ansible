@@ -12,7 +12,7 @@
   block:
     - name: Download prometheus archive
       unarchive:
-        src:
+        src: "{{NODE_EXPORTER_URL}}"
         dest: /tmp
         remote_src: yes
     - name: Copy node exporter to /opt
