@@ -9,15 +9,15 @@
 
 - name: debug
   debug:
-    msg: "{{NODE_EXPORTER_URL | split('/') | last }}"
+    msg: "{{NODE_EXPORTER_URL | split('/') | last | regex_replace('.tar.gz','') }}"
 
-#- name: Download prometheus archive
-#  unarchive:
-#    src:
-#    dest: /tmp
-#    remote_src: yes
-#- name: Copy node exporter to /opt
-#  copy:
-#    src: /tmp/node_exporter-1.2.2.linux-amd64
-#    dest: /opt/node-exporter
-#    remote_src: yes
+- name: Download prometheus archive
+  unarchive:
+    src:
+    dest: /tmp
+    remote_src: yes
+- name: Copy node exporter to /opt
+  copy:
+    src: /tmp/node_exporter-1.2.2.linux-amd64
+    dest: /opt/node-exporter
+    remote_src: yes
