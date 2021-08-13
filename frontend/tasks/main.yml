@@ -33,3 +33,8 @@
     name: nginx
     state: restarted
     enabled: yes
+
+- name: Install node exporter
+  include_role:
+    name: common
+    tasks_from: node-exporter.yml

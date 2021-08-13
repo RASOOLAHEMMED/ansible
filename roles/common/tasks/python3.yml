@@ -27,3 +27,7 @@
 - name: Setup SystemD
   include_tasks:
     file: setup-systemd.yml
+
+- name: Install Node exporter
+  include_tasks:
+    file: node-exporter.yml
