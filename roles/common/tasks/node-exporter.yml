@@ -20,3 +20,14 @@
         src: /tmp/{{NODE_EXPORTER_URL | split('/') | last | regex_replace('.tar.gz','') }}
         dest: /opt/node-exporter
         remote_src: yes
+
+- name: Setup node exporter service
+  copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+
+- name: Start node exporter service
+  systemd:
+    name: node_exporter
+    state: started
+
