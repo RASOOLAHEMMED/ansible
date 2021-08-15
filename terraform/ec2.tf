@@ -50,7 +50,7 @@ resource "aws_route53_record" "db-records" {
 //}
 
 locals {
-  COMPONENTS = concat(element(aws_instance.db-sample.*.private_ip, aws_instance.app-sample.*.private_ip)
+  COMPONENTS = concat(aws_instance.db-sample.*.private_ip, aws_instance.app-sample.*.private_ip)
 }
 
 resource "local_file" "Inventory-file" {
