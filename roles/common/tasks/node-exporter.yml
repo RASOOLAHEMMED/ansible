@@ -1,32 +1,63 @@
+#- name: Check node exporter does exist
+#  stat:
+#    path: /opt/node_exporter
+#  register: out
+#
+##- name: debug
+##  debug:
+##    msg: "{{out}}"
+#
+#- name: Install node Exporter
+#  when: not out.stat.exists
+#  block:
+#    - name: Download prometheus archive
+#      unarchive:
+#        src: "{{NODE_EXPORTER_URL}}"
+#        dest: /tmp
+#        remote_src: yes
+#    - name: Copy node exporter to /opt
+#      copy:
+#        src: /tmp/{{NODE_EXPORTER_URL | split('/') | last | regex_replace('.tar.gz','') }}/
+#        dest: /opt/node-exporter/
+#        remote_src: yes
+#
+#- name: Setup node exporter service
+#  copy:
+#    src: node_exporter.service
+#    dest: /etc/systemd/system/node_exporter.service
+#
+#- name: Start node exporter service
+#  systemd:
+#    name: node_exporter
+#    state: started
+
+
 - name: Check node exporter does exist
   stat:
     path: /opt/node_exporter
   register: out
 
-#- name: debug
-#  debug:
-#    msg: "{{out}}"
-
-- name: Install node Exporter
+- name: Install Node Exporter
   when: not out.stat.exists
   block:
-    - name: Download prometheus archive
+    - name: Download Prometheus Archive
       unarchive:
         src: "{{NODE_EXPORTER_URL}}"
         dest: /tmp
         remote_src: yes
-    - name: Copy node exporter to /opt
+
+    - name: Copy Node Exporter to /opt
       copy:
-        src: /tmp/{{NODE_EXPORTER_URL | split('/') | last | regex_replace('.tar.gz','') }}/
-        dest: /opt/node-exporter/
+        src: /tmp/{{ NODE_EXPORTER_URL | split('/') | last | regex_replace('.tar.gz', '') }}/
+        dest: /opt/node_exporter/
         remote_src: yes
 
-- name: Setup node exporter service
+- name: Setup Node Exporter Service
   copy:
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter.service
 
-- name: Start node exporter service
+- name: Start Node Exporter Service
   systemd:
     name: node_exporter
     state: started
