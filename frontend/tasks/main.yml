@@ -18,6 +18,12 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
+
+- name: Update main Nginx config
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 #- name: Copy roboshop configuration file
 #  copy:
 #      src: roboshop.conf
@@ -28,13 +34,21 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: restart NGINX service
-  systemd:
-    name: nginx
-    state: restarted
-    enabled: yes
-
 - name: Install node exporter
   include_role:
     name: common
     tasks_from: node-exporter.yml
+
+- name: Setup Filebeat
+  include_role:
+    name: common
+    tasks_from: filebeat
+  vars:
+    LOG_FILE: /var/log/nginx/access.log
+    STRUCTURED: "false"
+
+- name: Restart Nginx Service
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
