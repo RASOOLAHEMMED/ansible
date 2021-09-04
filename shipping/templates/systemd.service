@@ -3,7 +3,7 @@ Description=Shipping Service
 
 [Service]
 User=roboshop
-{% if COMPONENT %}
+{% if APP_PORT %}
 Environment=CART_ENDPOINT=cart-{{ENV}}.roboshop.internal:80
 {% else %}
 Environment=CART_ENDPOINT=cart-{{ENV}}.roboshop.internal:8080
