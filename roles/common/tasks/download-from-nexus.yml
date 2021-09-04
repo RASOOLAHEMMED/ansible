@@ -11,4 +11,5 @@
     dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
   become_user: roboshop
+  when: COMPONENT != "frontend"
 

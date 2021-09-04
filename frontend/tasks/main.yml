@@ -20,6 +20,13 @@
     remote_src: yes
   when: APP_VERSION is not defined
 
+- name: Download and Extract content
+  ansible.builtin.unarchive:
+    src: http://172.31.12.56:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+  when: APP_VERSION is defined
+
 - name: Update main Nginx config
   copy:
     src: nginx.conf
