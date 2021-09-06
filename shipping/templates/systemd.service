@@ -9,7 +9,7 @@ Environment=CART_ENDPOINT=cart-{{ENV}}.roboshop.internal:80
 Environment=CART_ENDPOINT=cart-{{ENV}}.roboshop.internal:8080
 {% endif %}
 Environment=DB_HOST=mysql-{{ENV}}.roboshop.internal
-ExecStart=/bin/java -jar /home/roboshop/shipping/shipping.jar
+ExecStart=/bin/java -Xms3500m -Xmx3500m -jar /home/roboshop/shipping/shipping.jar
 SyslogIdentifier=shipping
 
 [Install]
