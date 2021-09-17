@@ -39,7 +39,7 @@
   shell: az artifacts universal download --organization "https://dev.azure.com/rahemmedeee/" --project "c538555b-82eb-4acf-8907-01f0a2a72e5d" --scope project --feed "batch57" --name {{COMPONENT}} --version {{APP_VERSION}} --path .
   args:
     chdir: /home/roboshop/{{COMPONENT}}
-#  when: COMPONENT != "frontend"
+  when: COMPONENT != "frontend"
 
 
 
