@@ -26,12 +26,39 @@
     state: directory
   when:  APP_VERSION is defined
 
-- name: Download and Extract content
-  ansible.builtin.unarchive:
-    src: http://172.31.12.56:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
-    dest: /usr/share/nginx/html/
-    remote_src: yes
-  when: APP_VERSION is defined
+#- name: Download and Extract content
+#  ansible.builtin.unarchive:
+#    src: http://172.31.12.56:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
+#  when: APP_VERSION is defined
+
+- name: Import RPM key for AZ Repo
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Copy Az REpo file
+  copy:
+    src: az.repo
+    dest: /etc/yum.repos.d/az.repo
+
+- name: Install AZ Cli
+  yum:
+    name: azure-cli
+    state: installed
+
+- name: Install AZ Extention
+  shell: az extension add --name azure-devops
+
+- name: Setup Token
+  shell: echo {{PAT}} | az devops login
+
+- name: Download Artifacts
+  shell: az artifacts universal download --organization "https://dev.azure.com/rahemmedeee/" --project "c538555b-82eb-4acf-8907-01f0a2a72e5d" --scope project --feed "batch57" --name {{COMPONENT}} --version {{APP_VERSION}} --path .
+  args:
+    chdir: /usr/share/nginx/html/
+#  when: COMPONENT != "frontend"
 
 - name: Update main Nginx config
   copy:
