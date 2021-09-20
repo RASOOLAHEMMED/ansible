@@ -26,7 +26,9 @@
 
 - name: Install AZ Cli
   yum:
-    name: azure-cli
+    name:
+     - azure-cli
+     - libicu
     state: installed
 
 - name: Install AZ Extention
