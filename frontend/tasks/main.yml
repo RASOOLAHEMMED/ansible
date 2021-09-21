@@ -83,4 +83,4 @@
     name: nginx
     state: restarted
     enabled: yes
-    ignore_errors: yes
+#    ignore_errors: yes
